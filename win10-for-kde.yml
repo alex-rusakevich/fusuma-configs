@@ -1,0 +1,60 @@
+# Fusuma Windows 10 touchpad config for KDE
+#
+# Created by Alexander Rusakevich
+# at 2023-10-17T19:28:06+0300
+#
+
+swipe:
+  3:
+    left:
+      command: 'xdotool key super+Tab' # next window (custom keys, look "tiling order" in settings)
+    right:
+      command: 'xdotool key super+shift+Tab' # previous window (custom keys, look "tiling order" in settings)
+    up:
+      command: | # show opened apps ("Task view")
+        touch ~/.config/fusuma/all_windows_hidden.txt
+        FUSUMA_ALL_WINDOWS_HIDDEN=$(cat ~/.config/fusuma/all_windows_hidden.txt | xargs)
+
+        echo "FUSUMA_ALL_WINDOWS_HIDDEN = $FUSUMA_ALL_WINDOWS_HIDDEN"
+
+        if [ "$FUSUMA_ALL_WINDOWS_HIDDEN" = "1" ]; then # if windows are hidden then show them
+          xdotool key super+d
+        else # If nothing is hidden then show all apps
+          xdotool key super+w
+        fi
+        
+        echo 0 > ~/.config/fusuma/all_windows_hidden.txt
+    down:
+      command: | # show desktop
+        xdotool key super+d
+        echo 1 > ~/.config/fusuma/all_windows_hidden.txt
+  4:
+    up:
+      command: 'xdotool key super+w' # show opened apps ("Task view")
+    down:
+      command: 'xdotool key super+d' # show desktop
+    left:
+      command: 'xdotool key ctrl+alt+Right' # next desktop (custom keys)
+    right:
+      command: 'xdotool key ctrl+alt+Left' # previous desktop (custom keys)
+
+# hold:
+#   3: # Focus on application menu's search
+#     command: 'xdotool key super sleep 0.1 key ctrl+f'
+#   4: # Show notifications (custom keys)
+#     command: 'xdotool key alt+F7'
+
+# Scaling
+pinch:
+  out:
+    command: 'xdotool key ctrl+plus'
+  in:
+    command: 'xdotool key ctrl+minus'
+
+threshold:
+  swipe: 0.3
+  pinch: 0.1
+
+interval:
+  swipe: 1
+  pinch: 1
