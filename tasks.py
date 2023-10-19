@@ -8,7 +8,7 @@ from invoke import run, task
 def install(context):
     options = tuple(os.path.basename(i) for i in glob.glob("./configs/*.yml"))
 
-    print("Please, choose your config:\n")
+    print("Please, choose your config (press Ctrl-C to exit):\n")
 
     for i, option in enumerate(options):
         print(f"{i+1}) {option}")
@@ -23,9 +23,9 @@ def install(context):
         print(
             "'~/.config/fusuma/config.yml' already exists, backing it up as '~/.config/fusuma/config.yml.bak'..."
         )
-        run("mv ~/.config/fusuma/config.yml ~/.config/fusuma/config.yml.bak")
+        run("mv -f ~/.config/fusuma/config.yml ~/.config/fusuma/config.yml.bak")
 
-    run(f"cp '{os.path.join('configs', chosen_opt)}' ~/.config/fusuma/config.yml")
+    run(f"cp -f '{os.path.join('configs', chosen_opt)}' ~/.config/fusuma/config.yml")
     print("The config has been installed successfully! Restart fusuma, please")
 
 
