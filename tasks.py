@@ -6,7 +6,7 @@ from invoke import run, task
 
 @task
 def install(context):
-    options = tuple(os.path.basename(i) for i in glob.glob("./configs/*.yml"))
+    options = sorted(os.path.basename(i) for i in glob.glob("./configs/*.yml"))
 
     print("Please, choose your config (press Ctrl-C to exit):\n")
 

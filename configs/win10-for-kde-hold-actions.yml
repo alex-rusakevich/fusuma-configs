@@ -1,7 +1,7 @@
-# Fusuma Windows 10 touchpad config for KDE
+# Fusuma Windows 10 touchpad config for KDE with hold finger actions
 #
 # Created by Alexander Rusakevich
-# at 2023-10-17 19:28:06
+# at 2023-10-20 01:17:04
 #
 
 swipe:
@@ -37,6 +37,12 @@ swipe:
       command: 'xdotool key ctrl+alt+Right' # next desktop (custom keys)
     right:
       command: 'xdotool key ctrl+alt+Left' # previous desktop (custom keys)
+
+hold:
+  3: # Focus on application menu's search
+    command: 'xdotool key super sleep 0.1 key ctrl+f'
+  4: # Show notifications (custom keys)
+    command: 'xdotool key alt+F7'
 
 # Scaling
 pinch:
