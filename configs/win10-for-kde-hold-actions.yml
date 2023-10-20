@@ -40,7 +40,7 @@ swipe:
 
 hold:
   3: # Focus on application menu's search
-    command: 'xdotool key super sleep 0.1 key ctrl+f'
+    command: 'xdotool key alt+F2'
   4: # Show notifications (custom keys)
     command: 'xdotool key alt+F7'
 
